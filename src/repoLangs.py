@@ -9,7 +9,6 @@ import matplotlib.animation as animation
 # github API overview
 # https://docs.github.com/ja/rest/overview/endpoints-available-for-github-apps
 
-
 def getRepo(user):
     root = "https://api.github.com/"
     url = root + "users/" + user +"/repos"
@@ -33,8 +32,6 @@ def getRepo(user):
                 repoLang.append(lang)
                 repoLangNum.append(1)
     return repoLang, repoLangNum
-
-
 
 def createColor(cname, repoLang):
     cm = plt.get_cmap(cname)

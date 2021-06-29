@@ -26,7 +26,6 @@ def getRepo(user):
             Name.append(j[i]["name"])
             Size.append(j[i]["size"])
 
-      
     return Name, Size
             
 
