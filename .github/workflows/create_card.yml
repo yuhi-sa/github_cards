@@ -1,10 +1,14 @@
-name: Python application
+name: Create Card
 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  fork:
+    branches: [ master ]
+  schedule:
+    - cron: '45 10 * * *'
 
 jobs:
   build:
@@ -22,14 +26,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Test with pytest
+    - name: Update Card
       run: |
-        python test.py
+        bash start.bash
+      with:
+          USERNAME: ${{ github.repository_owner }}
 
-    - name: change directory name & return for git
+    - name: Card Published
       run: |
         git config user.name "<git-user-name>"
         git config user.email "<git-user-e-mail>"
         git add *
-        git commit -m "Generate & Change directory name!"
+        git commit -m "Update"
         git push origin master

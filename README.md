@@ -1,4 +1,4 @@
 # card
 
 ## Repos per Language
-![](card.gif)
+![Repos per Language](/cards/repos.gif)
