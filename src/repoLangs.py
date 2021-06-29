@@ -5,12 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.animation as animation
-import datetime
-
-dt_now = now[0:10]
-
-# github API overview
-# https://docs.github.com/ja/rest/overview/endpoints-available-for-github-apps
 
 def getRepo(user):
     root = "https://api.github.com/"
@@ -47,7 +41,7 @@ def update(num,chocopie, ax, colors, repoLangNum, repoLang):
     if len(chocopie) > 0:
         ax.cla()  
     chocopie = ax.pie(repoLangNum, labels=repoLang, autopct='%1.1f%%',shadow=True, startangle=4*num ,colors=colors)
-    ax.set_title("Repos per Language "+ "(" + dt_now + ")")
+    ax.set_title("Repos per Language")
 
 def format(Name, Size):
     sumsum = sum(Size)

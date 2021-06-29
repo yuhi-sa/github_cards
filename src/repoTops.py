@@ -5,13 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.animation as animation
-import datetime
-
-now = str(datetime.datetime.now())
-dt_now = now[0:10]
-# github API overview
-# https://docs.github.com/ja/rest/overview/endpoints-available-for-github-apps
-
 
 def getRepo(user):
     root = "https://api.github.com/"
@@ -43,7 +36,7 @@ def update(num,chocopie, ax, colors, Name, Size):
     if len(chocopie) > 0:
         ax.cla()  
     chocopie = ax.pie(Size, labels=Name, autopct=lambda p: '{:.1f}%'.format(p) if p >= 2.5 else '',shadow=True, startangle=4*num ,colors=colors)
-    ax.set_title("Top Size Repos " + "(" + dt_now + ")")
+    ax.set_title("Top Size Repos")
 
 def format(Name, Size):
     sumsum = sum(Size)

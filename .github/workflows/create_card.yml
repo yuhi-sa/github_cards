@@ -28,6 +28,16 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+    - name: Remove Old Date
+      run: |
+        rm cards/lang.gif
+        rm cards/top.gif
+        git config user.name "<git-user-name>"
+        git config user.email "<git-user-e-mail>"
+        git add *
+        git commit -m "Update"
+        git push origin master
+
     - name: Update Card
       env:
         username: ${{ github.repository_owner }}
