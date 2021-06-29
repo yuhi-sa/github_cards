@@ -55,7 +55,7 @@ def format(Name, Size):
     return Name2, Size2
 
 def main():
-    user = "yuhi-sa"#os.environ.get("username")
+    user = os.environ.get("username")
     Name, Size = getRepo(user)
     Name, Size = format(Name, Size)
     fig, ax = plt.subplots()    
