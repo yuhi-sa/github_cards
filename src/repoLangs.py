@@ -9,9 +9,9 @@ import matplotlib.animation as animation
 # github API overview
 # https://docs.github.com/ja/rest/overview/endpoints-available-for-github-apps
 
-root = "https://api.github.com/"
 
 def getRepo(user):
+    root = "https://api.github.com/"
     url = root + "users/" + user +"/repos"
 
     repos = requests.get(url)
@@ -33,7 +33,8 @@ def getRepo(user):
                 repoLang.append(lang)
                 repoLangNum.append(1)
     return repoLang, repoLangNum
-            
+
+
 
 def createColor(cname, repoLang):
     cm = plt.get_cmap(cname)
@@ -48,18 +49,31 @@ def update(num,chocopie, ax, colors, repoLangNum, repoLang):
     chocopie = ax.pie(repoLangNum, labels=repoLang, autopct='%1.1f%%',shadow=True, startangle=4*num ,colors=colors)
     ax.set_title("Repos per Language")
 
-def main():
-    # テストデータ
-    # repoLang = ['Dockerfile', 'Python', 'HTML', None, 'Jupyter Notebook', 'Rust', 'MATLAB', 'JavaScript', 'CSS', 'Shell', 'TeX', 'C', 'TypeScript']
-    # repoLangNum = [1, 10, 3, 3, 4, 1, 1, 1, 1, 1, 2, 1, 1]
+def format(Name, Size):
+    sumsum = sum(Size)
+    Name2 = []
+    Size2 = []
+    others = 0
+    for i in range(len(Name)):
+        if Size[i]/sumsum <= 0.05:
+            others += Size[i]
+        else:
+            Name2.append(Name[i])
+            Size2.append(Size[i])
+    Name2.append("others")
+    Size2.append(others)
 
+    return Name2, Size2
+
+def main():
     user = os.environ.get("username")
     repoLang, repoLangNum = getRepo(user)
+    repoLang, repoLangNum = format(repoLang, repoLangNum)
     fig, ax = plt.subplots()    
     colors = createColor("Set3", repoLang)
     chocopie = ax.pie(repoLangNum, labels=repoLang, autopct='%1.1f%%',shadow=True, startangle=0,colors=colors)
     ani = animation.FuncAnimation(fig, update, frames=91,fargs=[chocopie,ax,colors,repoLangNum,repoLang], interval=100)
-    ani.save('../cards/repos.gif', writer="ffmpeg",dpi=100)
+    ani.save('../cards/lang.gif', writer="ffmpeg",dpi=100)
 
 if __name__=='__main__':
     main()

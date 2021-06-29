@@ -1,2 +1,3 @@
 cd src
-python repolang.py
+python repoLangs.py
+python repoTops.py
