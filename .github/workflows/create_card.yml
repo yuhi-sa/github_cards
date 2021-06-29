@@ -29,9 +29,10 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Update Card
+      env:
+        username: ${{ github.repository_owner }}
       run: |
         bash start.bash
-        echo ${{ github.repository_owner }}
 
     - name: Card Published
       run: |

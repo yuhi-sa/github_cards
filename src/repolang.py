@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -52,7 +53,7 @@ def main():
     # repoLang = ['Dockerfile', 'Python', 'HTML', None, 'Jupyter Notebook', 'Rust', 'MATLAB', 'JavaScript', 'CSS', 'Shell', 'TeX', 'C', 'TypeScript']
     # repoLangNum = [1, 10, 3, 3, 4, 1, 1, 1, 1, 1, 2, 1, 1]
 
-    user = input()
+    user = os.environ.get("username")
     repoLang, repoLangNum = getRepo(user)
     fig, ax = plt.subplots()    
     colors = createColor("Set3", repoLang)
