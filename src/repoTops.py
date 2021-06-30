@@ -55,7 +55,9 @@ def format(Name, Size):
     return Name2, Size2
 
 def main():
-    user = os.environ.get("username")
+    f = open('../username.txt', 'r') 
+    user = f.read()
+    f.close()
     Name, Size = getRepo(user)
     Name, Size = format(Name, Size)
     fig, ax = plt.subplots()    

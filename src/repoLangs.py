@@ -60,7 +60,9 @@ def format(Name, Size):
     return Name2, Size2
 
 def main():
-    user = os.environ.get("username")
+    f = open('../username.txt', 'r') 
+    user = f.read()
+    f.close()
     repoLang, repoLangNum = getRepo(user)
     # repoLang, repoLangNum = format(repoLang, repoLangNum)
     fig, ax = plt.subplots()    
