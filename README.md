@@ -6,7 +6,7 @@ GitHubのプロフィールに載せるGithubリポジトリ情報の可視化�
 ## How to Use
 このリポジトリをfork，GitHub Actionsを起動(Run workflow)
 
-<img width="1264" alt="Actions" src="https://user-images.githubusercontent.com/62089243/123906501-42e8f680-d9af-11eb-9bb8-c5efe613f5e7.png">
+<img width="80%" alt="Actions" src="https://user-images.githubusercontent.com/62089243/123906737-ae32c880-d9af-11eb-829e-449bbca0c27c.png">
 
 {username}を変更して以下のリンクをプロフィールのREADMEに追記してください．
 
