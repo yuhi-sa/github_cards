@@ -39,7 +39,7 @@ jobs:
 
     - name: Update Card
       env:
-        username: ${{ github.user }}
+        username: ${{ github.username }}
       run: |
         bash start.bash
 
