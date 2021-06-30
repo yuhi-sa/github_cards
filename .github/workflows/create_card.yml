@@ -38,8 +38,6 @@ jobs:
         git push origin master
 
     - name: Update Card
-      env:
-        username: ${{ github.actor }}
       run: |
         bash start.bash
 
