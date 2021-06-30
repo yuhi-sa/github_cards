@@ -8,7 +8,7 @@ import matplotlib.animation as animation
 
 def getRepo(user):
     root = "https://api.github.com/"
-    url = root + "users/" + user +"/repos"
+    url = root + "users/" + str(user) +"/repos"
 
     repos = requests.get(url)
 
