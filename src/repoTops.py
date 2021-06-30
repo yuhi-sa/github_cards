@@ -60,9 +60,9 @@ def main():
     Name, Size = format(Name, Size)
     fig, ax = plt.subplots()    
     colors = createColor("Set3", Name)
-    chocopie = ax.pie(Size, labels=Name, autopct=lambda p: '{:.1f}%'.format(p) if p >= 2.5 else '' ,shadow=True, startangle=0,colors=colors)
+    chocopie = ax.pie(Size, labels=Name, autopct=lambda p: '{:.1f}%'.format(p) if p >= 5 else '' ,shadow=True, startangle=0,colors=colors)
     ani = animation.FuncAnimation(fig, update, frames=91,fargs=[chocopie,ax,colors,Name,Size], interval=100)
-    ani.save('../cards/top.gif', writer="ffmpeg",dpi=300)
+    ani.save('../cards/top.gif', writer="ffmpeg",dpi=100)
 
 if __name__=='__main__':
     main()

@@ -65,9 +65,9 @@ def main():
     # repoLang, repoLangNum = format(repoLang, repoLangNum)
     fig, ax = plt.subplots()    
     colors = createColor("Set3", repoLang)
-    chocopie = ax.pie(repoLangNum, labels=repoLang, autopct=lambda p: '{:.1f}%'.format(p) if p >= 2.5 else '',shadow=True, startangle=0,colors=colors)
+    chocopie = ax.pie(repoLangNum, labels=repoLang, autopct=lambda p: '{:.1f}%'.format(p) if p >= 5 else '',shadow=True, startangle=0,colors=colors)
     ani = animation.FuncAnimation(fig, update, frames=91,fargs=[chocopie,ax,colors,repoLangNum,repoLang], interval=100)
-    ani.save('../cards/lang.gif', writer="ffmpeg",dpi=300)
+    ani.save('../cards/lang.gif', writer="ffmpeg",dpi=100)
 
 if __name__=='__main__':
     main()
