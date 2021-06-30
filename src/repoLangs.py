@@ -62,7 +62,7 @@ def format(Name, Size):
 def main():
     user = os.environ.get("username")
     repoLang, repoLangNum = getRepo(user)
-    repoLang, repoLangNum = format(repoLang, repoLangNum)
+    # repoLang, repoLangNum = format(repoLang, repoLangNum)
     fig, ax = plt.subplots()    
     colors = createColor("Set3", repoLang)
     chocopie = ax.pie(repoLangNum, labels=repoLang, autopct='%1.1f%%',shadow=True, startangle=0,colors=colors)
