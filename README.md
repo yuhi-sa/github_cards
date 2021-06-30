@@ -4,7 +4,7 @@ GitHubのプロフィールに載せるGithubリポジトリ情報の可視化�
 <img src="https://github.com/yuhi-sa/github_cards/blob/master/cards/lang.gif?raw=true" width="50%"><img src="https://github.com/yuhi-sa/github_cards/blob/master/cards/top.gif?raw=true" width="50%">
 
 ## How to Use
-このリポジトリをfork,{username}を変更して以下のリンクを追記してください．
+このリポジトリをfork,{username}を変更して以下のリンクをプロフィールのREADMEに追記してください．
 
 ```
 ## Repos per Language
