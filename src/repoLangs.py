@@ -21,7 +21,7 @@ def getRepo(user):
         for i in range(len(j)):
             lang = j[i]["language"]
 
-            if lang == "None":
+            if lang == None:
                 pass
             elif lang in repoLang:
                 repoLangNum[repoLang.index(lang)] += 1
