@@ -5,7 +5,7 @@ GitHubのプロフィールに載せるGithubリポジトリ情報の可視化�
 
 ## How to Use
 1. このリポジトリをfork．
-2. [username.txt](username.txt)に自身のuser名に書き換える．
+2. [username.txt](username.txt)を自身のuser名に書き換える．
 3. GitHub Actionsを起動(Run workflow)．
 <img width="80%" alt="Actions" src="https://user-images.githubusercontent.com/62089243/123906737-ae32c880-d9af-11eb-829e-449bbca0c27c.png">
 (24時間ごとに自動で更新されます)
