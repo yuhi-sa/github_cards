@@ -2,6 +2,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/yuhi-sa/github_cards)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/yuhi-sa/github_cards)
 ![GitHub top language](https://img.shields.io/github/languages/top/yuhi-sa/github_cards)
+![GitHub language count](https://img.shields.io/github/languages/count/yuhi-sa/github_cards)
 # card
 GitHubのプロフィールに載せるGithubリポジトリ情報の可視化カード
 
