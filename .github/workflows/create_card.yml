@@ -43,6 +43,7 @@ jobs:
 
     - name: Update Card
       run: |
+        mkdir cards
         bash start.bash
 
     - name: Card Published
