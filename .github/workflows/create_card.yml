@@ -27,13 +27,13 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Remove Old Date
+    - name: Remove Old Date and Git Push
       run: |
-        rm cards/lang.gif
-        rm cards/top.gif
         git config user.name "<git-user-name>"
         git config user.email "<git-user-e-mail>"
-        git add *
+        if [ -f "cards/lang.gif" ]; then rm cards/lang.gif; fi
+        if [ -f "cards/top.gif" ]; then rm cards/top.gif; fi
+        git add -A
         git commit -m "Update"
         git push origin master
 
@@ -45,6 +45,6 @@ jobs:
       run: |
         git config user.name "<git-user-name>"
         git config user.email "<git-user-e-mail>"
-        git add *
+        git add -A
         git commit -m "Update"
         git push origin master
