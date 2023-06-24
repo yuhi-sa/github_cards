@@ -43,6 +43,7 @@ jobs:
 
     - name: Update Card
       run: |
+        rm -rf cards
         mkdir cards
         bash start.bash
 
