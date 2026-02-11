@@ -68,7 +68,7 @@ def create_animation(
         )
 
     ani = FuncAnimation(fig, update, frames=72, interval=80)
-    fig.tight_layout()
+    fig.subplots_adjust(top=0.88)
     return ani
 
 
