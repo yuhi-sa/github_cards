@@ -1,70 +1,85 @@
-import json
-import os
-import requests
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-import matplotlib.animation as animation
+"""GitHub Cards - Top Repos by Size (animated donut chart)."""
 
-def getRepo(user):
-    root = "https://api.github.com/"
-    url = root + "users/" + str(user) +"/repos"
+from __future__ import annotations
 
-    repos = requests.get(url)
+from matplotlib.animation import FuncAnimation
 
-    Name = []
-    Size = []
-    if repos.status_code == 200:
+from utils import (
+    BG_COLOR,
+    SUBTEXT_COLOR,
+    TEXT_COLOR,
+    consolidate_small,
+    fetch_repos,
+    get_colors,
+    read_username,
+    save_animation,
+    setup_figure,
+)
 
-        j = repos.json()
 
-        for i in range(len(j)):
-            Name.append(j[i]["name"])
-            Size.append(j[i]["size"])
+def extract_repo_data(repos: list[dict]) -> tuple[list[str], list[float], int]:
+    """Extract repo names and sizes, sorted by size descending."""
+    pairs = [(r["name"], r["size"]) for r in repos if r.get("size", 0) > 0]
+    pairs.sort(key=lambda p: p[1], reverse=True)
+    total_count = len(pairs)
+    names = [p[0] for p in pairs]
+    sizes = [float(p[1]) for p in pairs]
+    names, sizes = consolidate_small(names, sizes, 0.05)
+    return names, sizes, total_count
 
-    return Name, Size
-            
 
-def createColor(cname, Name):
-    cm = plt.get_cmap(cname)
-    colors = []
-    for i in range(len(Name)):
-        colors.append(cm(i))
-    return colors
+def create_animation(
+    names: list[str],
+    sizes: list[float],
+    total_count: int,
+) -> FuncAnimation:
+    """Build a rotating donut chart animation."""
+    fig, ax = setup_figure(figsize=(6, 6))
+    colors = get_colors(len(names))
 
-def update(num,chocopie, ax, colors, Name, Size):
-    if len(chocopie) > 0:
-        ax.cla()  
-    chocopie = ax.pie(Size, labels=Name, autopct=lambda p: '{:.1f}%'.format(p) if p >= 2.5 else '',shadow=True, startangle=4*num ,colors=colors)
-    ax.set_title("Top Size Repos")
+    def update(frame: int) -> None:
+        ax.cla()
+        ax.set_facecolor(BG_COLOR)
 
-def format(Name, Size):
-    sumsum = sum(Size)
-    Name2 = []
-    Size2 = []
-    others = 0
-    for i in range(len(Name)):
-        if Size[i]/sumsum <= 0.05:
-            others += Size[i]
-        else:
-            Name2.append(Name[i])
-            Size2.append(Size[i])
-    Name2.append("others")
-    Size2.append(others)
+        ax.pie(
+            sizes,
+            labels=names,
+            colors=colors,
+            startangle=frame * 3,
+            autopct=lambda p: f"{p:.1f}%" if p >= 2.5 else "",
+            wedgeprops=dict(width=0.4, edgecolor=BG_COLOR, linewidth=2),
+            textprops=dict(color=TEXT_COLOR, fontsize=9),
+        )
 
-    return Name2, Size2
+        ax.text(
+            0, 0.05, str(total_count),
+            ha="center", va="center",
+            fontsize=28, fontweight="bold", color=TEXT_COLOR,
+        )
+        ax.text(
+            0, -0.12, "repos",
+            ha="center", va="center",
+            fontsize=10, color=SUBTEXT_COLOR,
+        )
 
-def main():
-    f = open('../username.txt', 'r') 
-    user = f.read()
-    f.close()
-    Name, Size = getRepo(user)
-    Name, Size = format(Name, Size)
-    fig, ax = plt.subplots()    
-    colors = createColor("Set3", Name)
-    chocopie = ax.pie(Size, labels=Name, autopct=lambda p: '{:.1f}%'.format(p) if p >= 5 else '' ,shadow=True, startangle=0,colors=colors)
-    ani = animation.FuncAnimation(fig, update, frames=91,fargs=[chocopie,ax,colors,Name,Size], interval=100)
-    ani.save('../cards/top.gif', writer="ffmpeg",dpi=100)
+        ax.set_title(
+            "Top Repos by Size",
+            color=TEXT_COLOR, fontsize=16, fontweight="bold", pad=20,
+        )
 
-if __name__=='__main__':
+    ani = FuncAnimation(fig, update, frames=72, interval=80)
+    fig.tight_layout()
+    return ani
+
+
+def main() -> None:
+    """Generate animated donut chart of top repos by size."""
+    username = read_username()
+    repos = fetch_repos(username)
+    names, sizes, total_count = extract_repo_data(repos)
+    ani = create_animation(names, sizes, total_count)
+    save_animation(ani, "top.gif")
+
+
+if __name__ == "__main__":
     main()

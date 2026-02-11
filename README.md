@@ -3,34 +3,37 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/yuhi-sa/github_cards)
 ![GitHub top language](https://img.shields.io/github/languages/top/yuhi-sa/github_cards)
 ![GitHub language count](https://img.shields.io/github/languages/count/yuhi-sa/github_cards)
-# card
-GitHubのプロフィールに載せるGithubリポジトリ情報の可視化カード
 
-<img src="https://github.com/yuhi-sa/github_cards/blob/master/cards/lang.gif?raw=true" width="50%"><img src="https://github.com/yuhi-sa/github_cards/blob/master/cards/top.gif?raw=true" width="50%">
+# GitHub Cards
+
+GitHub のプロフィールに載せるリポジトリ情報の可視化カード。
+ダークテーマのモダンなドーナツチャートで、言語分布とリポジトリサイズを表示します。
+
+<img src="https://github.com/yuhi-sa/github_cards/blob/master/cards/lang.gif?raw=true" width="48%"> <img src="https://github.com/yuhi-sa/github_cards/blob/master/cards/top.gif?raw=true" width="48%">
 
 ## How to Use
-1. このリポジトリをfork．
-2. [username.txt](username.txt)を自身のuser名に書き換える．
-3. GitHub Actionsを起動(Run workflow)．
+
+1. このリポジトリを fork する
+2. [`username.txt`](username.txt) を自身のユーザー名に書き換える
+3. GitHub Actions を起動 (Run workflow)
+
 <img width="80%" alt="Actions" src="https://user-images.githubusercontent.com/62089243/123906737-ae32c880-d9af-11eb-829e-449bbca0c27c.png">
-(一週間ごとに自動で更新されます)
 
-{username}を変更して以下のリンクをプロフィールのREADMEに追記してください．
+> 一週間ごとに自動で更新されます
 
-```
-## Repos per Language
-![Repos per Language](https://github.com/{username}/github_cards/blob/master/cards/lang.gif?raw=true)
-## Top Size Repos
-![Repos per Language](https://github.com/{username}/github_cards/blob/master/cards/top.gif?raw=true)
+### プロフィール README に追加
 
-## 横幅を指定する場合の書き方
-<img src="https://github.com/{username}/github_cards/blob/master/cards/lang.gif?raw=true" width="40%">
-<img src="https://github.com/{username}/github_cards/blob/master/cards/top.gif?raw=true" width="40%">
+`{username}` を自身のユーザー名に置き換えてください。
+
+```markdown
+<img src="https://github.com/{username}/github_cards/blob/master/cards/lang.gif?raw=true" width="48%">
+<img src="https://github.com/{username}/github_cards/blob/master/cards/top.gif?raw=true" width="48%">
 ```
 
+## Preview
 
-## Repos per Language
+### Repos per Language
 ![Repos per Language](/cards/lang.gif)
 
-## Top Size Repos
+### Top Size Repos
 ![Top Size Repos](/cards/top.gif)
